@@ -1,6 +1,6 @@
 ID: LogApp
 _schema-version: 3.2.0
-version: 0.0.1
+version: 0.0.3
 parameters:
   enable-parallel-deployments: true
 modules:
@@ -10,10 +10,17 @@ modules:
     parameters:
       disk-quota: 512M
       memory: 512M
-    requires: []
+    requires:
+      - name: logapp-uaa
     build-parameters:
       builder: custom
       commands:
         - npm install
         - npm run build:ui --prefix ..
-resources: []
+resources:
+  - name: logapp-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
