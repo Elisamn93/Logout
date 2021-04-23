@@ -5,7 +5,10 @@
   <App id="idAppControl" >
     <pages>
       <Page title="{i18n>title}">
-        <content></content>
+        <content>
+        <Button text="Logout" press="onLogout"/>
+         <Button text="Logout2" press="onLogout2"/>
+        </content>
       </Page>
     </pages>
   </App>

@@ -1,15 +1,29 @@
 {
   "welcomeFile": "uimodule/index.html",
-  "authenticationMethod": "none",
+  "authenticationMethod": "route",
   "logout": {
-    "logoutEndpoint": "/do/logout"
+   "logoutEndpoint": "/logout",
+    "logoutPage": "/logout.html"
   },
   "routes": [
     {
+      "source": "^/index.html$",
+      "target": "$1",
+      "authenticationType": "xsuaa",
+      "localDir": "uimodule/webapp",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    },
+    {
       "source": "^/uimodule/(.*)$",
       "target": "$1",
-      "authenticationType": "none",
+      "authenticationType": "xsuaa",
       "localDir": "uimodule/webapp"
+    },
+     {
+      "source":  "^/logout.html$",
+      "authenticationType": "none",
+      "localDir": "uimodule/webapp",
+      "cacheControl": "no-cache, no-store, must-revalidate"
     }
   ]
 }
